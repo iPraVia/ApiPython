@@ -1,0 +1,16 @@
+.navbar {
+    border:3px dotted green;
+}
+.dropdown-menu {
+    border: 1px solid red;
+}
+
+.navbar-collapse {
+    justify-content: end;
+}
+
+.divCarousel {  
+    width: 66%;
+    margin-left: 18%;
+    margin-top: 1%;
+}

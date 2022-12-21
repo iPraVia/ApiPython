@@ -1,0 +1,64 @@
+{% include 'alumno/header.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario registro de institucion</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Guardar">
+        </form>
+    </div>
+    <div class="container d-flex d-flex justify-content-center">
+        <h1>Lista de Usuarios</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Username</td>
+                    <td>Nombre</td>
+                    <td>A. Paterno</td>
+                    <td>A. Materno</td>
+                    <td>Direccion</td>
+                    <td>Fecha Nac.</td>
+                    <td>Estado</td>
+                    <td>Institucion</td>
+                    <td>Editar</td>
+                    <td>Borrar</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if users %}
+                    {% for u in users %}
+                        <tr>
+                            <td>{{u.id}}</td>
+                            <td>{{u.username}}</td>
+                            <td>{{u.nombre}}</td>
+                            <td>{{u.apellidoPaterno}}</td>
+                            <td>{{u.apellidoMaterno}}</td>
+                            <td>{{u.direccion}}</td>
+                            <td>{{u.nacimiento}}</td>
+                            <td>{{u.estado}}</td>
+                            <td>{{u.institucion}}</td>
+                            <td><a href="/editarDireccion/{{i.id}}"><button class="btn btn-warning">Editar</button></a></td>
+                            <td><a href="/eliminarDireccion/{{i.id}}"><button class="btn btn-danger">Borrar</button></a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No hay instituciones registradas</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

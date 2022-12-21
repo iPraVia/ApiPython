@@ -1,0 +1,41 @@
+{% include 'alumno/header.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+</head>
+<body>
+    <div class="container my-4">
+        <h1>Listado de cursos</h1>
+        <a href="{% url 'curso' %}" class="btn btn-success my-4">Agregar o modificar</a>
+    </div>
+    <div class="container d-flex d-flex justify-content-center vh-100">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Nombre</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if cursos %}
+                    {% for i in cursos %}
+                        <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.nombre}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No hay Cursos registrados</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

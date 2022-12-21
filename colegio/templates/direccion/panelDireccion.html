@@ -1,0 +1,54 @@
+{% include 'alumno/header.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario registro de direcciones</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Guardar">
+        </form>
+    </div>
+    <div class="container d-flex d-flex justify-content-center vh-100">
+        <h1>Lista Direcciones</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Ciudad</td>
+                    <td>Direccion</td>
+                    <td>Numero</td>
+                    <td>Editar</td>
+                    <td>Borrar</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if direcciones %}
+                    {% for d in direcciones %}
+                        <tr>
+                            <td>{{d.id}}</td>
+                            <td>{{d.ciudad}}</td>
+                            <td>{{d.calle}}</td>
+                            <td>{{d.numero}}</td>
+                            <td><a href="/editarDireccion/{{d.id}}"><button class="btn btn-warning">Editar</button></a></td>
+                            <td><a href="/eliminarDireccion/{{d.id}}"><button class="btn btn-danger">Borrar</button></a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No hay direcciones registradas</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

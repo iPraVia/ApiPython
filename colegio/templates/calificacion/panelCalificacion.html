@@ -1,0 +1,41 @@
+{% include 'alumno/header.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container d-flex d-flex justify-content-center vh-100">
+        <h1>Lista Calificacion</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Alumno</td>
+                    <td>Asignatura</td>
+                    <td>Nota</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if calificacion %}
+                    {% for i in calificacion %}
+                        <tr>
+                            <td>{{i.alumno.id}}</td>
+                            <td>{{i.asignatura.nombre}}</td>
+                            <td>{{i.nota}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No hay Asignaturas registradas</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

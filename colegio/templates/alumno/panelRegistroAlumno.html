@@ -1,0 +1,53 @@
+{% include 'alumno/header.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around">
+        <div class="container">
+            <h1>Formulario registro Alumno</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ forms.as_p }}
+                <input type="submit">
+            </form>
+        </div>
+        <div class="container">
+            {% if alumnos %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>UserName</td>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>Direccion</td>
+                            <td>Curso</td>
+                            <td>Institucion</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in alumnos %}
+                            <tr>
+                                <td>{{a.id.username}}</td>
+                                <td>{{a.id.nombre}}</td>
+                                <td>{{a.id.apellidoPaterno}} {{a.id.apellidoMaterno}}</td>
+                                <td>{{a.id.direccion.calle}} {{a.id.direccion.ciudad}}</td>
+                                <td>{{a.curso.nombre}}</td>
+                                <td>{{a.id.institucion.nombre}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+            <h1>No hay alumnos registrados</h1>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
